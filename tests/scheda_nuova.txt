@@ -1,0 +1,138 @@
+@@def
+# Documento di prova per il test dello strumento
+# lanciare: ctxt.py --debug -y scheda_nuova valore=mio_valore_fisso
+
+# variabili di test
+@text:"Testo di prova
+@comt:"Testo seguito da #commento
+@vuota:
+
+@composta:#Questo è il #text># #vuota_<#del #date>#.
+
+# variabili di sistema
+@envios:%OS
+@enviname:%FULLNAME
+@envinot:%NON_ESISTE
+
+#variabili con definizione di tipo
+@tipoText@text
+@tipoDate@date
+@tipoTime@time
+#variabili esistenti con definizione di tipo
+@textToDate:"20101010
+@textToTime:"111111111111
+@textNoDate:"12345678
+@textNoTime:"999999999999
+@textToDate@date
+@textToTime@time
+@textNoDate@date
+@textNoTime@time
+@tipoDate@text
+@tipoTime@text
+
+#@ri2:"rilascio:
+#@ri2:?.+
+
+@@doc
+Scheda di test
+
+=============== PREDEFINED VARIABLES
+name          : #name>#
+user          : #user>#
+date          : #date>#
+hour          : #hour>#
+
+=============== Variabili definite in DEFINITION SECTION:
+text     : #text___________________________#
+comt     : #comt___________________________#
+vuota    : #vuota>#.
+composta : #composta>#
+
+=============== Variabile presa dal sistema operativo:
+os           : #envios>#
+nome utente  : #enviname>#
+non esiste   : #envinot>#
+
+=============== Variabile non definita:
+Il valore '#valore>#' è stato richiesto interattivamente.
+
+=============== Caratteri particolari
+Uso del carattere hash senza campo: # testo fisso # altro testo#.
+Con underscore tra le variabili: _#name>#_#user#_.
+
+=============== Definizioni di tipo e conversioni
+Esito delle definizioni tipizzate e seguenti conversioni:
+Testo 20101010 -> Data : #textToDate.#
+Testo 12345678 -> Data : #textNoDate.# (data non valida: valore di default)
+Testo 111111111111 -> Ora : #textToTime._>#
+Testo 999999999999 -> Ora : #textNoTime._># (ora non valida: valore di default)
+Data di default -> Testo : #tipoDate:-xxxx xx xx-#
+Ora di default  -> Testo : #tipoTime:-xx xx xx xxxxxx-#
+Variabile definita di tipo Testo : #tipoText:-xxx-_<# (vuota)
+
+=============== FORMATS
+                il punto segna la fine ----------------------,
+                i due-punti sono in colonna nel template ----+--,
+                                                             V  V
+Variabile base                    :#text____________________#.  :
+Variabile centrata                :#_text___________________#.  :
+Variabile allineata a destra      :#____________________text#.  :
+Variabile troncata                :#text_____#.                 :
+Variabile collassata              :#text___________________<#.  :
+Variabile troncata con indicazione:#text__...#.                 :
+Variabile senza limitazione       :#text____>#.                 :
+Variabile sia collassata          :#text__________________<>#.  :
+          sia senza limitazione   :#text<>#.                    :
+Variabile con lunghezza esplicita :#text____4#.                 :
+Variabile con lung. e ellipse     :#text_4...#.                 :
+Variabile con lunghezza inutile   :#text___4>#.                 :
+Variabile con lunghezza nulla     :#text____0#.                 :
+Variabile senza alcun accessorio  :#text#.                      :
+
+Più variabili sulla stessa linea:
+___|   prima    |___|   seconda   |____|  terza   |
+v1 :#text___...#, v2:#comt____...#, v3 :#name____#.
+
+options : TypeString
+-----------------------------------
+text distribution :
+    escaping -> #name:(x) +=>\+, -=>\-, (ics)=>\x, (backslash)=>\\, (duepunti)=>\:#
+    text     -> #text:1\:x, 2\:xx, segue\:xxxxxxxxxx, ultimo\:x#
+    parziale -> #text:prime 4\:xxxx#
+
+options : TypeDate
+-----------------------------------
+separators :
+    escaping -> + #date:.\+#, - #date:.\-#, \ #date:.\\#, : #date:.\:#
+    default  -> #date._____#
+    barra    -> #date./____#
+    trattino -> #date.-____#
+    spazio   -> #date. ____#
+formatting :
+    American notation -> #date:mdY#      #date./:mdY#    #date:mdY:.#
+    singole parti, anno -> #date:Y#
+                   mese -> #date:m#
+                 giorno -> #date:d#
+shifting :
+    1 mese fà, dopo 4 giorni -> #date:-1m:+4d#
+    fra 1 anno, meno 1 mese, dopo 29 giorni -> #date:+1Y:-1m:+29d#
+    7 giorni fà, lavorativi  -> #date:-7L# rispetto a #date:-7#
+    fra 7 giorni lavorativi  -> #date:+7L# rispetto a #date:+7#
+    
+    
+options : TypeTime
+-----------------------------------
+separators :
+    escaping -> + #hour:.\+#, - #hour:.\-#, \ #hour:.\\#, : #hour:.\:#
+    default  -> #hour._____#
+    trattino -> #hour..____#
+    spazio   -> #hour. ____#
+formatting :
+    notazioni particolari -> #hour:.\::HM_<#      #hour:MS#    #hour:Sf:.,#
+    singole parti, ore -> #hour:H#
+                minuti -> #hour:M#
+               secondi -> #hour:S#
+   frazioni di secondo -> #hour:f#
+
+
+Fine
