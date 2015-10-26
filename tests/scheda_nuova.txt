@@ -1,24 +1,24 @@
 @@def
-# Documento di prova per il test dello strumento
-# lanciare: ctxt.py --debug -y scheda_nuova valore=mio_valore_fisso
+# Document for testing
+# using: ctxt.py --debug -y scheda_nuova value=my_external_value
 
-# variabili di test
-@text:"Testo di prova
-@comt:"Testo seguito da #commento
-@vuota:
+# general variables for testing
+@text:"Text for a try
+@comt:"Text followed by a #comment
+@empty:
 
-@composta:#Questo è il #text># #vuota_<#del #date>#.
+@compiled:#This is the #text># #empty_<#of #date>#.
 
-# variabili di sistema
+# System variables
 @envios:%OS
 @enviname:%FULLNAME
-@envinot:%NON_ESISTE
+@envinot:%NOT_EXISTS
 
-#variabili con definizione di tipo
-@tipoText@text
-@tipoDate@date
-@tipoTime@time
-#variabili esistenti con definizione di tipo
+#type defined variables
+@typeText@text
+@typeDate@date
+@typeTime@time
+#actual variables with type definition
 @textToDate:"20101010
 @textToTime:"111111111111
 @textNoDate:"12345678
@@ -27,14 +27,14 @@
 @textToTime@time
 @textNoDate@date
 @textNoTime@time
-@tipoDate@text
-@tipoTime@text
+@typeDate@text
+@typeTime@text
 
-#@ri2:"rilascio:
+#@ri2:"conditional text:
 #@ri2:?.+
 
 @@doc
-Scheda di test
+Form for ctxt test
 
 =============== PREDEFINED VARIABLES
 name          : #name>#
@@ -42,33 +42,34 @@ user          : #user>#
 date          : #date>#
 hour          : #hour>#
 
-=============== Variabili definite in DEFINITION SECTION:
+=============== Variables defined in DEFINITION SECTION:
 text     : #text___________________________#
 comt     : #comt___________________________#
-vuota    : #vuota>#.
-composta : #composta>#
+empty    : #empty>#.
+compiled : #compiled>#
 
-=============== Variabile presa dal sistema operativo:
+=============== Operative system Variables:
 os           : #envios>#
-nome utente  : #enviname>#
-non esiste   : #envinot>#
+user name    : #enviname>#
+don't exsists: #envinot>#
 
-=============== Variabile non definita:
-Il valore '#valore>#' è stato richiesto interattivamente.
+=============== Undefined variables (externals):
+The value '#value>#' is tocken from command-line.
+The value '#something>#' is tocken interactively.
 
-=============== Caratteri particolari
-Uso del carattere hash senza campo: # testo fisso # altro testo#.
-Con underscore tra le variabili: _#name>#_#user#_.
+=============== Special characters
+Use of sharp character as is: # fixed text #as is, and other#.
+Use of underscore near placeholders: _#name>#_#user#_.
 
-=============== Definizioni di tipo e conversioni
+=============== Type definitions and casts
 Esito delle definizioni tipizzate e seguenti conversioni:
 Testo 20101010 -> Data : #textToDate.#
 Testo 12345678 -> Data : #textNoDate.# (data non valida: valore di default)
 Testo 111111111111 -> Ora : #textToTime._>#
 Testo 999999999999 -> Ora : #textNoTime._># (ora non valida: valore di default)
-Data di default -> Testo : #tipoDate:-xxxx xx xx-#
-Ora di default  -> Testo : #tipoTime:-xx xx xx xxxxxx-#
-Variabile definita di tipo Testo : #tipoText:-xxx-_<# (vuota)
+Data di default -> Testo : #typeDate:-xxxx xx xx-#
+Ora di default  -> Testo : #typeTime:-xx xx xx xxxxxx-#
+Variabile definita di type Testo : #typeText:-xxx-_<# (empty)
 
 =============== FORMATS
                 il punto segna la fine ----------------------,
