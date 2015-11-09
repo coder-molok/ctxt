@@ -28,10 +28,7 @@ doctxt="""\
 documentazione="""\
                                 Documentation
 
-  CTXT is a "textual document compiler", in my original intentions it
-  should have been a simple "find placeholders, put values" script,
-  but I was experienceing Python OOP, so I have deliberately enlarged
-  the project...
+  CTXT is a "textual document compiler".
   
   CTXT get a "textual document source", compile it and produce a 
   textual document.
