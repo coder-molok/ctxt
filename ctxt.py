@@ -1431,7 +1431,7 @@ def apri_files(files_descr):
         else:
             fileOut_n+=files_descr.name+"-"+date.today().strftime("%Y%m%d")+".prt"
         # apro fileOut
-        if len(glob(fileOut_n)) == 1 :
+        if len(glob(fileOut_n)) == 1 and not files_descr.overwrite:
             #chiedo se sovrascrivere o accodare
             #
             #           CONFERMA SOVRASCRIVERE
