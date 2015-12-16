@@ -10,7 +10,7 @@
   Get in example a mail you use to send to acquaintances for greetings,
   you have to "copy and past" the same text and substitute only
   the recipient name and the date.
-  In this case a tamplate can help you to create the correct text 
+  In this case a template can help you to create the correct text 
   each time.
   
   However, CTXT is more and more powerfull!
@@ -60,7 +60,7 @@
   '------------------------------------------------------------------
   will result in the first case.
   
-  There are many options like this, so let's take a look in deeper.
+  There are many options like that, so let's take a look in deeper.
   
   --- VARIABLES
   The variable entity lives in two forms: as placeholders in template

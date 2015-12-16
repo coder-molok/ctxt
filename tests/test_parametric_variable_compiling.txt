@@ -1,0 +1,21 @@
+@@def
+# Document for testing
+# using: ctxt.py --debug -y *this_file* *external_values*
+#
+#  ctxt.py --debug -y test_parametric_variable_compiling num=2
+
+# general variables for testing
+@path:"x-x-x-x-x-x-x-x
+@border:"
+@length:"7
+@myVar::user:#path<>#_#border##lenght#
+
+@@doc
+TEST parametric variable compiling
+
+Reference value: #user>#
+Command: ##user:#path<>#_#border##lenght###
+
+Result: #myVar__________#
+
+Fine

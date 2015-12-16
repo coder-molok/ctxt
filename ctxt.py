@@ -1,3 +1,5 @@
+#! /usr/bin/py
+
 # Molok 20141222
 #
 # Compiler for "txt" documents
@@ -512,7 +514,8 @@ class Template:
         log.setSeparator("")
         for l in file_in :
             # remove last \n char
-            l=l[:-1]
+            if l[-1] == "\n":
+                l=l[:-1]
             log.append("Template - ")
             # verify definition section begin/end
             if not is_def and l[:5]=="@@def": is_def=True
@@ -1256,7 +1259,7 @@ def calcola_variabili(stringa_variabili, wallet):
         wallet.var(Variable('name', Variable.PRE, wallet.tmp.file_name))
         print(".",end="")
     # -- user --
-    wallet.var(Variable('user', Variable.PRE, os.environ['username']))
+    wallet.var(Variable('user', Variable.PRE, os.environ['USERNAME']))
     Log.DEBUG("calcola_variabili - PRE {:15}={}",'user',wallet.var(rif='user'))
     # -- date --
     wallet.var(Variable('date', Variable.PRE, date.today()))

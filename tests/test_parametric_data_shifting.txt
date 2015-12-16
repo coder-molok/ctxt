@@ -1,0 +1,19 @@
+@@def
+# Document for testing
+# using: ctxt.py --debug -y *this_file* *external_values*
+#
+#  ctxt.py --debug -y test_parametric_data_shifting num=2
+
+# general variables for testing
+@myDate@date
+@myDate::date:-#num<#
+
+@@doc
+TEST parametric data shifting
+
+Reference date: #date>#
+Difference in days: #num>#
+
+Result: #myDate>#
+
+Fine
