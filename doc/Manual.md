@@ -4,7 +4,7 @@
 
   CTXT get a "textual document source", compile it and produce a 
   textual document.
-  However, a "document" may be whitchever unicode textual file, so, 
+  However, a "document" may be whichever unicode textual file, so, 
   CTXT may work fine also with "technical" files, source file, etc.
 
   Get in example a mail you use to send to acquaintances for greetings,
